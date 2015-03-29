@@ -17,7 +17,7 @@ body
 	background-size:cover;
 }
 
-div#main
+div.main
 {
 	color:#C8C7C7;
 	position: fixed;
@@ -35,7 +35,7 @@ div#main
 
 #login
 {
-	//position: fixed;
+	margin-left:-10%;
 }
 
 ul
@@ -51,4 +51,27 @@ li
 {
 	margin-left:2%;
 	padding-left:20%;
+}
+#registrationLogin
+{
+	height:3%;
+	width:3%;
+}
+.small
+{
+	font-size:12px;
+	
+}
+
+a:link
+{
+	color:#FDFBFB;
+}
+a:hover
+{	
+	color:#FFFFFF;
+}
+a:active
+{
+	color:#FDFBFB;
 }
