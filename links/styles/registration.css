@@ -1,0 +1,16 @@
+div.main
+{
+	color:#C8C7C7;
+	position: fixed;
+	top:20%;
+	left:40%;
+	font-size:20px;
+}
+#step1
+{
+	display: block;
+}
+#step2
+{
+	display: none;
+}

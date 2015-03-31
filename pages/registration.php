@@ -1,3 +1,7 @@
+<?php
+	include_once("config.php");
+?>
+<?php if(!(isset($_POST['register']))) { ?>
 <?xml version = "1.0"  encoding = "utf-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -270,3 +274,15 @@
 		</div>
 	</body>
 </html>
+<?php 
+	}else{
+		$usr = new Users;
+		$usr->storeFormValues($_POST);
+		
+		if($_POST['password'] == $_POST['conpassword']){
+			echo $usr->register($_POST);
+		}else{
+			echo "Password and Confirm password not match";
+		}
+	}
+?>
