@@ -24,23 +24,23 @@
 					</p>
 					<li>
 						<label for="fname">First Name : </label>
-						<input type="text" maxlength="30" required autofocus pattern="\w+" name="fname" /> 
+						<input type="text" maxlength="30" required autofocus name="fname" /> 
 					</li>
 					<li>
 						<label for="lname">Last Name : </label>
-						<input type="text" maxlength="30" required pattern="\w+" name="lname" />
+						<input type="text" maxlength="30" required name="lname" />
 					</li>
 					<li>
 						<label for="usn">Username : </lable>
-						<input type="text" maxlength="30" required pattern="\w+" name="username" />
+						<input type="text" maxlength="30" required name="username" />
 					</li>
 					<li>
 						<label for="passwd">Password : </label>
-						<input type="password" id="passwd" maxlength ="30" required pattern="(?+.*\d(?=.*[a-z])(?=.*[A-Z]).{6,}" name="password" onchange="form.conpassword.pattern = this.value;" />
+						<input type="password" id="passwd" maxlength ="30" required name="password" />
 					</li>
 					<li>
 						<label for="conpasswd">Confirm Password : </label>
-						<input type="password" id="conpasswd" maxlength="30" required pattern="(?+.*\d(?=.*[a-z])(?=.*[A-Z]).{6,}" name="conpassword" onkeyup="checkPass(); return false;"/>
+						<input type="password" id="conpasswd" maxlength="30" required name="conpassword" onkeyup="checkPass(); return false;"/>
 						<span id="confirmMessage" class="small"></span>
 					</li>
 					<li>
@@ -256,9 +256,9 @@
 							Please tell us what you would like to track and download icons to be used. Also give use the maximum speed of groups to be tracked.
 						</p>
 						<li id="dynamicInput">
-							<input type="text" maxlength="2" required name="speed[]" />
-							<input type="text" maxlength="20" required name="trackedObject[]" />
-							<input type="file" name="icon[]" required />
+							<label for="speed[]">Maximum Speed: </label><input type="text" maxlength="2" required name="speed[]" /><br />
+							<label for="trackedObject[]">Type of object: </label><input type="text" maxlength="20" required name="trackedObject[]" /><br />
+							<label for="icon[]">Download Icon: </label><input type="file" name="icon[]" required />
 						</li>
 						<li>
 							<input type="image" class="button" name="addNew" src="../pictures/buttons/btnADDNEW.png" onClick="addInput('dynamicInput');" />

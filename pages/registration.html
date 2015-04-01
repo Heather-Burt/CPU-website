@@ -252,9 +252,9 @@
 							Please tell us what you would like to track and download icons to be used. Also give use the maximum speed of groups to be tracked.
 						</p>
 						<li id="dynamicInput">
-							<input type="text" maxlength="2" required name="speed[]" />
-							<input type="text" maxlength="20" required name="trackedObject[]" />
-							<input type="file" name="icon[]" required />
+							<label for="speed[]">Maximum Speed: </label><input type="text" maxlength="2" required name="speed[]" /><br />
+							<label for="trackedObject[]">Type of object: </label><input type="text" maxlength="20" required name="trackedObject[]" /><br />
+							<label for="icon[]">Download Icon: </label><input type="file" name="icon[]" required />
 						</li>
 						<li>
 							<input type="image" class="button" name="addNew" src="../pictures/buttons/btnADDNEW.png" onClick="addInput('dynamicInput');" />
