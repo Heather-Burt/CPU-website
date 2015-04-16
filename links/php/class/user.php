@@ -1,9 +1,12 @@
 <?php
 	include('../php/config.php');
+	//starting session for holding variables needed on other pages
 	
 	session_start();
 	
 	class Users{
+		//variables needed on this page for working with the database
+		
 		public $username = null;
 		public $password = null;
 		public $fname = null;
@@ -15,6 +18,7 @@
 		public $icon = null;
 		
 		public function __construct($data = array()){
+			//getting variable data from the forms both login and registration
 			if(isset($data['username']))$this->username = stripslashes(strip_tags($data['username']));
 			if(isset($data['password']))$this->password = stripslashes(strip_tags($data['password']));
 			if(isset($data['fname']))$this->fname = stripslashes(strip_tags($data['fname']));
@@ -34,6 +38,7 @@
 		public function userLogin(){
 			$sucess = false;
 			try{
+				//trying to login user in 
 				$con = new PDO(DB_DSN, DB_USERNAME, BD_PASSWORD);
 				$sql = "SELECT * FROM user WHERE userName = :username and password = :password LIMIT 1;";
 				
@@ -45,6 +50,7 @@
 				$valid = $stmt->fetchColumn();
 				
 				if($valid){
+					//placing variables into the session variable for use on other pages
 					$_SESSION['username'] = $username;
 					$_SESSION['userId'] = $valid['userID'];
 					$_SESSION['firstName'] = $valid['firstName'];
@@ -55,6 +61,7 @@
 				return $success;
 			}catch(PDOException $e){
 				echo $e->getMessage();
+				//returning whether user is in database
 				return $success;
 			}
 		}
@@ -81,12 +88,15 @@
 					$stmt->bindValue("password", password_hash($this->password, PASSWORD_DEFAULT), PDO::PARAM_STR);
 					$stmt->execute();
 					
+					$_SESSION = 
 					$id = $stmt->fetchColumn();
+					
+					$_SESSION = $id['userID'];
 					foreach($type as $value)
 					{
 						$sql = "INSERT INTO type(userID, ul_Lat, ul_long, lr_Lat, lr_Long, speed, objectType, pic) values(:id, null, null, null, null, :speed, :objectType, :pic);";
 						$stmt = $con->prepare($sql);
-						$stmt->bindValue("id",$this->id, PDO::PARAM_STR);
+						$stmt->bindValue("id",$this->id['userID'], PDO::PARAM_STR);
 						$stmt->bindValue("speed", $this->speed, PDO::PARAM_STR);
 						$stmt->bindValue("objectType", $this->trackedObject, PDO::PARAM_STR);
 						$stmt->bindValue("pic", $this->icon, PDO::PARAM_STR);

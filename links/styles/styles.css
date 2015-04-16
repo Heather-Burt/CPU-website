@@ -10,32 +10,33 @@ body
 	background-repeat:no-repeat;
 	background-size:100%;
 	height:100%;
-	//width:100%;
+	
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size:cover;
 	background-size:cover;
+	
 }
 
 div.main
 {
 	color:#C8C7C7;
-	position: fixed;
-	top:40%;
-	left:40%;
+	
 	font-size:20px;
+	
 }
 
 .button
 {
-	height:15%;
-	width:15%;
-	margin:3%;
+	height:5%;
+	width:5%;
+	margin:1%;
 }
 
 #login
 {
 	margin-left:-10%;
+	margin-top: 5%;
 }
 
 ul
@@ -45,13 +46,12 @@ ul
 }
 li
 {
-	margin:3%;
+	margin:1%;
+	position: relative;
+	left: -5%;
+	top: -60px;
 }
-#loginHead
-{
-	margin-left:2%;
-	padding-left:20%;
-}
+
 #registrationLogin
 {
 	height:3%;
@@ -59,7 +59,10 @@ li
 }
 .small
 {
-	font-size:12px;
+	font-size:15px;
+	position:relative;
+	top: -70px;
+	left: -140px;
 	
 }
 

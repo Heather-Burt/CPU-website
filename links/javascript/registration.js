@@ -6,7 +6,12 @@ function addInput(liName){
 function show(selection){
 	elem('step1').style.display = "none";
 	elem('step2').style.display = "none";
+	elem('step3').style.display = "none";
 	elem(selection).style.display = "block";
+	if(selection == "step3")
+	{
+		elem('map-canvas').style.display = "block";
+	}
 }	
 function elem(elemId) {
     return document.getElementById(elemId);

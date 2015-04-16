@@ -1,9 +1,7 @@
 div.main
 {
 	color:#C8C7C7;
-	position: fixed;
-	top:20%;
-	left:40%;
+
 	font-size:20px;
 }
 #step1
@@ -13,4 +11,33 @@ div.main
 #step2
 {
 	display: none;
+}
+
+#map-canvas
+{
+	width: 500px;
+	height: 400px;
+	display: none;
+	left: -450px;
+}
+
+div.registration
+{
+	position: relative;
+	left:40%;
+	top:150px;
+}
+
+.umap
+{
+	position: relative;
+	top:10px;
+	left:-240px;
+}
+.umapbuttons
+{
+	
+	margin: .5%;
+	position: relative;
+	top: 10px;
 }

@@ -1,0 +1,21 @@
+.loginDiv
+{
+	position: relative;
+	left:40%;
+	top:150px;
+}
+.small
+{
+	top: 0px;
+}
+.button
+{
+	height: 4%;
+	width: 4%;
+	margin: .5%;
+}
+#registrationLogin
+{
+	height: 2%;
+	width: 2%;
+}
