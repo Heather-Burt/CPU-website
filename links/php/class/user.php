@@ -1,4 +1,8 @@
 <?php
+	include('../php/config.php');
+	
+	session_start();
+	
 	class Users{
 		public $username = null;
 		public $password = null;
@@ -41,6 +45,9 @@
 				$valid = $stmt->fetchColumn();
 				
 				if($valid){
+					$_SESSION['username'] = $username;
+					$_SESSION['userId'] = $valid['userID'];
+					$_SESSION['firstName'] = $valid['firstName'];
 					$success = true;
 				}
 				

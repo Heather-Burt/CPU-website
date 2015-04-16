@@ -1,5 +1,6 @@
 CREATE TABLE user(
 	userID			INT			NOT NULL AUTO_INCREMENT,
+	userName		CHAR(30)	NOT NULL,
 	firstName		CHAR(30)	NOT NULL,
 	lastName		CHAR(30)	NOT NULL,
 	password		VARBINARY	NOT NULL,
@@ -18,7 +19,7 @@ CREATE TABLE type(
 	lr-Lat			FLOAT		NULL,
 	lr-Long			FLOAT		NULL,
 	speed			INT			NOT NULL,
-	type			CHAR(100)	NOT NULL,
+	objectType		CHAR(100)	NOT NULL,
 	pic				VARCHAR		NOT NULL,
 		CONSTRAINT TYPE_PK PRIMARY KEY(typeID),
 		CONSTRAINT USER_TYPE_FK FOREIGN KEY(userID)
@@ -29,6 +30,7 @@ CREATE TABLE type(
 CREATE TABLE tracked(
 	trackedID		INT			NOT NULL AUTO_INCREMENT,
 	typeID			INT			NOT NULL,
+	trackName		CHAR(30)	NULL,
 	licenceNumber	CHAR(10)	NULL,
 	make			CHAR(30)	NULL,
 	model			CHAR(30)	NULL,
@@ -55,4 +57,3 @@ CREATE TABLE location(
 			REFERENCES TRACKED(trackedID)
 			ON UPDATE CASCADE
 ); 
-	

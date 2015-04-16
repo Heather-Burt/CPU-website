@@ -30,6 +30,7 @@ CREATE TABLE type(
 CREATE TABLE tracked(
 	trackedID		INT			NOT NULL AUTO_INCREMENT,
 	typeID			INT			NOT NULL,
+	trackName		CHAR(30)	NULL,
 	licenceNumber	CHAR(10)	NULL,
 	make			CHAR(30)	NULL,
 	model			CHAR(30)	NULL,

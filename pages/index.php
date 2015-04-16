@@ -46,7 +46,7 @@
 	$usr->storeFormValuse($_POST);
 	
 	if($usr->userLogin()){
-		header("location: index.html");
+		header("location: home.php");
 	}else{
 		echo "Incorrect Username/Password";
 	}
