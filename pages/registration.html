@@ -23,13 +23,41 @@
           			zoom: 8,
           			mapTypeId: google.maps.MapTypeId.HYBRID
         		}
-        		map = new google.maps.Map(mapCanvas, mapOptions)
+        		map = new google.maps.Map(mapCanvas, mapOptions);
+				var num = 0;
+				window.alert("value of num is "+num);
+				google.maps.event.addListener(map, 'click', function(event){
+					//lat and lng is available in e object
+					var lat= event.latLng.lat();
+					var lng= event.latLng.lng();
+					window.alert("I am at the beginning and the value of num is "+num);
+					if(num == 0)
+					{
+						var latText = document.getElementById('upLefLat');
+						var lonText = document.getElementById('upLefLon');
+						latText.value = lat;
+						lonText.value = lng;
+						num = 1;
+						window.alert("I am in if(num==0) and the value of num is "+num);
+					}
+					else if(num == 1)
+					{
+						var latText = document.getElementById('lowRigLat');
+						var lonText = document.getElementById('lowRigLon');
+						latText.value = lat;
+						lonText.value = lng;
+						num = 2;
+						window.alert("I am in if(num == 1) and the value of num is "+num);
+					}
+					else
+					{
+						window.alert("latitude = "+lat+" longitude = "+lng);
+					}
+				});
       		}
       		google.maps.event.addDomListener(window, 'load', initialize);
-      		//google.maps.event.addListener(map, "click", function(e){
-      			//lat and lng is available in e object
-      			//var latLng = e.latLng;
-      		//});
+			
+      		
     	</script>
 		<title>
 			Registration page
@@ -276,7 +304,8 @@
 					</div>
 					<div id="step2" style="display:none;">
 						<p class="small">
-							Please tell us what you would like to track and download icons to be used. Also give use the maximum speed of groups to be tracked.
+							Please tell us what you would like to track and download icons to be used.<br />
+							Also give use the maximum speed of groups to be tracked.
 						</p>
 						<li id="dynamicInput">
 							<label for="speed[]">Maximum Speed: </label><input type="text" maxlength="2" required name="speed[]" /><br />
@@ -293,21 +322,23 @@
 						</li>
 					</div>
 					<div id="step3" style="display:none;">
+					<p class="small">Please click the upper left hand corner of your geofence location.<br />
+					Then click lower right hand corner of your geofence location.</p>
 					<div id="map-canvas" style="display:show;">
 					
 					</div>
 					
 					<li class="umap">
 						<label for="upLefLat">Upper Left Latitude:</label>
-						<input type="text" maxlength="20" required name="upLefLat" />
+						<input type="text" maxlength="20" required name="upLefLat" id="upLefLat" />
 						<label for="upLefLon">Upper Left Longitude:</label>
-						<input type="text" maxlength="20" required name="upLefLon" />
+						<input type="text" maxlength="20" required name="upLefLon" id="upLefLon" />
 					</li>
 					<li class="umap">
 						<label for="lowRigLat">Lower Right Latitude:</label>
-						<input type="text" maxlength="20" required name="lowRigLat" />
+						<input type="text" maxlength="20" required name="lowRigLat" id="lowRigLat" />
 						<label for="lowRigLon">Lower Right Longitude:</label>
-						<input type="text" maxlength="20" required name="lowRigLon" />
+						<input type="text" maxlength="20" required name="lowRigLon" id="lowRigLon" />
 					</li>
 					<li class="umapbuttons">
 						<input type="image" class="button" name="register" alt="new user registration" src="../pictures/buttons/btnSAVE.png" onclick="location.href='map.html'" />

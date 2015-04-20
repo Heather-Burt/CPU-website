@@ -11,6 +11,7 @@ function show(selection){
 	if(selection == "step3")
 	{
 		elem('map-canvas').style.display = "block";
+		initialize();
 	}
 }	
 function elem(elemId) {
