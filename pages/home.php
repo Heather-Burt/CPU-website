@@ -19,6 +19,14 @@
 		</title>
 	</head>
 	<body>
-
+		<p>
+			<a href="map.php">
+				<img src="../pictures/icons/allAnimals.png" />
+			</a><br />
+			<?php
+				
+				
+			?>
+		</p>
 	</body>
 </html>
