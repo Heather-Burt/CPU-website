@@ -78,3 +78,9 @@ a:active
 {
 	color:#FDFBFB;
 }
+#allAnimals
+{
+	position:relative;
+	left:450px;
+	top:100px;
+}
