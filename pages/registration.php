@@ -10,6 +10,97 @@
 		<link rel="stylesheet" type="text/css" href="../links/styles/styles.css" />
 		<link rel="stylesheet" type="text/css" href="../links/styles/registration.css" />
 		<script type"text/javascript" src="../links/javascript/registration.js"></script>
+		<style>
+      		#map-canvas {
+        		width: 1000px;
+        		height: 600px;
+        		
+      		}
+    	</style>
+    	<script src="https://maps.googleapis.com/maps/api/js"></script>
+    	<script>
+    		var map;
+			var initialLocation;
+			var browserSupportFlag = new Boolean();
+      		function initialize() {
+				if(!!navigator.geolocation){
+				
+					var mapCanvas = document.getElementById('map-canvas');
+					var mapOptions = {
+						//center: new google.maps.LatLng(44.5403, -78.5463),
+						zoom: 8,
+						mapTypeId: google.maps.MapTypeId.HYBRID
+					}
+					map = new google.maps.Map(mapCanvas, mapOptions);
+					if(navigator.geolocation){
+							browserSupportFlag = true;
+							navigator.geolocation.getCurrentPosition(function(position){
+								initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+								map.setCenter(initialLocation);
+						}, function(){
+							handleNoGeolocation(browserSupportFlag);
+						});
+						}
+						else{
+							browserSupportFlag = false;
+							handleNoGeolocation(BrowserSupportFlag);
+						}
+						function handleNoGeolocation(errorFlag){
+							if(errorFlag == true){
+								alert("Geolocation service failed.");
+								initialLocation = new google.maps.LatLng(0.0, 0.0);
+							}else{
+								alert("Your browser doesn't support geolocation.");
+								initialLocation = new google.maps.LatLng(0.0, 0.0);
+							}
+						map.setCenter(initialLocation);
+					}
+				}
+				var num = 0;
+				
+				google.maps.event.addListener(map, 'click', function(event){
+					//lat and lng is available in e object
+					var lat= event.latLng.lat();
+					var lng= event.latLng.lng();
+					
+					if(num == 0)
+					{
+						var latText = document.getElementById('upLefLat');
+						var lonText = document.getElementById('upLefLon');
+						latText.value = lat;
+						lonText.value = lng;
+						num = 1;
+						
+					}
+					else if(num == 1)
+					{
+						var latText = document.getElementById('lowRigLat');
+						var lonText = document.getElementById('lowRigLon');
+						latText.value = lat;
+						lonText.value = lng;
+						num = 2;
+						
+					}
+					else
+					{
+						if(confirm("Would you like to change geofence location?") == true){
+							num = 0;
+							var latText = document.getElementById('upLefLat');
+							var lonText = document.getElementById('upLefLon');
+							latText.value = " ";
+							lonText.value = " ";
+							latText = document.getElementById('lowRigLat');
+							lonText = document.getElementById('lowRigLon');
+							latText.value = " ";
+							lonText.value = " ";
+						}
+					}
+				});
+      		}
+      		google.maps.event.addDomListener(window, 'load', initialize);
+			
+      		
+    	</script>
 		<title>
 			Registration page
 		</title>
@@ -17,7 +108,7 @@
 	<body>
 		<div class="main">
 			<h3 id="registhead">Please Register for use.</h3>
-			<form id="register" method="post" action="">
+			<form id="register" method="post" action="<?php echo $uploadHandler ?>" enctype="multipart/form-data">
 				<ul>
 				<div id="step1" style="display:show">
 					<p class="small">Please fill in all fields. If all ready registered please hit back.<img id="registrationLogin" src="../pictures/buttons/btnBACK.png" /></p>
@@ -253,7 +344,8 @@
 					</div>
 					<div id="step2" style="display:none;">
 						<p class="small">
-							Please tell us what you would like to track and download icons to be used. Also give use the maximum speed of groups to be tracked.
+							Please tell us what you would like to track and download icons to be used.<br />
+							Also give use the maximum speed of groups to be tracked.
 						</p>
 						<li id="dynamicInput">
 							<label for="speed[]">Maximum Speed: </label><input type="text" maxlength="2" required name="speed[]" /><br />
@@ -265,10 +357,33 @@
 						</li>
 						<li class="buttons">
 							<input type="image" class="button" name="login" src="../pictures/buttons/btnBACK.png" onClick="show('step1')" />
+							<input type="image" class="button" name="register" alt="new user registration" src="../pictures/buttons/next.jpeg" onclick="javascript:show('step3');" />
+							
+						</li>
+					</div>
+					<div id="step3" style="display:none;">
+						<p class="small">Please click the upper left hand corner of your geofence location.<br />
+						Then click lower right hand corner of your geofence location.</p>
+						<div id="map-canvas" style="display:show;">
+					
+						</div>
+					
+						<li class="umap">
+							<label for="upLefLat">Upper Left Latitude:</label>
+							<input type="text" maxlength="20" required name="upLefLat" id="upLefLat" />
+							<label for="upLefLon">Upper Left Longitude:</label>
+							<input type="text" maxlength="20" required name="upLefLon" id="upLefLon" />
+						</li>
+						<li class="umap">
+							<label for="lowRigLat">Lower Right Latitude:</label>
+							<input type="text" maxlength="20" required name="lowRigLat" id="lowRigLat" />
+							<label for="lowRigLon">Lower Right Longitude:</label>
+							<input type="text" maxlength="20" required name="lowRigLon" id="lowRigLon" />
+						</li>
+						<li class="umapbuttons">
 							<input type="image" class="button" name="register" alt="new user registration" src="../pictures/buttons/btnSAVE.png" onclick="location.href='map.html'" />
 						</li>
 					</div>
-					
 				</ul>
 			</form>
 		</div>

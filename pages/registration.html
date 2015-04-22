@@ -16,21 +16,49 @@
     	<script src="https://maps.googleapis.com/maps/api/js"></script>
     	<script>
     		var map;
+			var initialLocation;
+			var browserSupportFlag = new Boolean();
       		function initialize() {
-        		var mapCanvas = document.getElementById('map-canvas');
-        		var mapOptions = {
-          			center: new google.maps.LatLng(44.5403, -78.5463),
-          			zoom: 8,
-          			mapTypeId: google.maps.MapTypeId.HYBRID
-        		}
-        		map = new google.maps.Map(mapCanvas, mapOptions);
+				if(!!navigator.geolocation){
+				
+					var mapCanvas = document.getElementById('map-canvas');
+					var mapOptions = {
+						//center: new google.maps.LatLng(44.5403, -78.5463),
+						zoom: 8,
+						mapTypeId: google.maps.MapTypeId.HYBRID
+					}
+					map = new google.maps.Map(mapCanvas, mapOptions);
+					if(navigator.geolocation){
+							browserSupportFlag = true;
+							navigator.geolocation.getCurrentPosition(function(position){
+								initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+								map.setCenter(initialLocation);
+						}, function(){
+							handleNoGeolocation(browserSupportFlag);
+						});
+						}
+						else{
+							browserSupportFlag = false;
+							handleNoGeolocation(BrowserSupportFlag);
+						}
+						function handleNoGeolocation(errorFlag){
+							if(errorFlag == true){
+								alert("Geolocation service failed.");
+								initialLocation = new google.maps.LatLng(0.0, 0.0);
+							}else{
+								alert("Your browser doesn't support geolocation.");
+								initialLocation = new google.maps.LatLng(0.0, 0.0);
+							}
+						map.setCenter(initialLocation);
+					}
+				}
 				var num = 0;
-				window.alert("value of num is "+num);
+				
 				google.maps.event.addListener(map, 'click', function(event){
 					//lat and lng is available in e object
 					var lat= event.latLng.lat();
 					var lng= event.latLng.lng();
-					window.alert("I am at the beginning and the value of num is "+num);
+					
 					if(num == 0)
 					{
 						var latText = document.getElementById('upLefLat');
@@ -38,7 +66,7 @@
 						latText.value = lat;
 						lonText.value = lng;
 						num = 1;
-						window.alert("I am in if(num==0) and the value of num is "+num);
+						
 					}
 					else if(num == 1)
 					{
@@ -47,11 +75,21 @@
 						latText.value = lat;
 						lonText.value = lng;
 						num = 2;
-						window.alert("I am in if(num == 1) and the value of num is "+num);
+						
 					}
 					else
 					{
-						window.alert("latitude = "+lat+" longitude = "+lng);
+						if(confirm("Would you like to change geofence location?") == true){
+							num = 0;
+							var latText = document.getElementById('upLefLat');
+							var lonText = document.getElementById('upLefLon');
+							latText.value = " ";
+							lonText.value = " ";
+							latText = document.getElementById('lowRigLat');
+							lonText = document.getElementById('lowRigLon');
+							latText.value = " ";
+							lonText.value = " ";
+						}
 					}
 				});
       		}
