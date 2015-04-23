@@ -24,6 +24,7 @@
 		public $ullon = null;
 		public $lrlat = null;
 		public $lrlon = null;
+		public $otype = null;
 		
 		public function __construct($data = array()){
 			//getting variable data from the forms both login and registration
@@ -40,6 +41,7 @@
 			if(isset($data['upLefLon']))$this->ullon = striplasher(strip_tags($data['upLefLon']));
 			if(isset($data['lowRigLat']))$this->lrlat = striplasher(strip_tags($data['lowRigLat']));
 			if(isset($data['lowRigLon']))$this->lrlon = striplasher(strip_tags($data['lowRigLon']));
+			if(isset($data['type']))$this->otype = striplasher(strip_tags($data['type']));
 			
 		}
 		
@@ -107,9 +109,10 @@
 					$_SESSION['username'] = $username;
 					foreach($type as $value)
 					{
-						$sql = "INSERT INTO type(userID, ul_Lat, ul_long, lr_Lat, lr_Long, speed, objectType, pic) values(:id, :ullat, :ullon, :lrlat, :lrlon, :speed, :objectType, :pic);";
+						$sql = "INSERT INTO type(userID, type, ul_Lat, ul_long, lr_Lat, lr_Long, speed, objectType, pic) values(:id, :otype, :ullat, :ullon, :lrlat, :lrlon, :speed, :objectType, :pic);";
 						$stmt = $con->prepare($sql);
 						$stmt->bindValue("id",$this->id['userID'], PDO::PARAM_STR);
+						$stmt->bindValue("type", $this->otype, PDO::PARAM_STR);
 						$stmt->bindValue("speed", $this->speed, PDO::PARAM_STR);
 						$stmt->bindValue("objectType", $this->trackedObject, PDO::PARAM_STR);
 						$stmt->bindValue("pic", $this->icon, PDO::PARAM_STR);

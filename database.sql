@@ -14,6 +14,7 @@ CREATE TABLE user(
 CREATE TABLE type(
 	userID			INT			NOT NULL,
 	typeID			INT			NOT NULL AUTO_INCREMENT,
+	type			CHAR(5)		NOT NULL,
 	ul-Lat			FLOAT		NULL,
 	ul-Long			FLOAT		NULL,
 	lr-Lat			FLOAT		NULL,

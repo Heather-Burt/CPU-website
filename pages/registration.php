@@ -348,6 +348,8 @@
 							Also give use the maximum speed of groups to be tracked.
 						</p>
 						<li id="dynamicInput">
+							<input type="radio" name="type" value="v" checked />Vehicle
+							<input type="radio" name="type" value="a" />Animal<br />
 							<label for="speed[]">Maximum Speed: </label><input type="text" maxlength="2" required name="speed[]" /><br />
 							<label for="trackedObject[]">Type of object: </label><input type="text" maxlength="20" required name="trackedObject[]" /><br />
 							<label for="icon[]">Download Icon: </label><input type="file" name="icon[]" required />

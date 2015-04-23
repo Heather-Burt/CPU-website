@@ -1,6 +1,6 @@
 function addInput(liName){
 	var newli = document.createElement('li');
-	newli.innerHTML = "<label for='speed[]'>Maximum Speed: </label><input type='text' maxlength='2' required name='speed[]' /><br /><label for='trackedObject[]'>Type of Object: </label><input type='text' maxlength='20' required name='trackedObject[]' /><br /><label for='icon[]'>Download Icon: </label><input type='file' name='icon[]' required />";
+	newli.innerHTML = "<input type='radio' name='type' value='v' checked />Vehicle <input type='radio' name='type' value='a' />Animal<br /><label for='speed[]'>Maximum Speed: </label><input type='text' maxlength='2' required name='speed[]' /><br /><label for='trackedObject[]'>Type of Object: </label><input type='text' maxlength='20' required name='trackedObject[]' /><br /><label for='icon[]'>Download Icon: </label><input type='file' name='icon[]' required />";
 	elem(liName).appendChild(newli);
 }
 function show(selection){
