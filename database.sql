@@ -3,11 +3,11 @@ CREATE TABLE user(
 	userName		CHAR(30)	NOT NULL,
 	firstName		CHAR(30)	NOT NULL,
 	lastName		CHAR(30)	NOT NULL,
-	password		VARBINARY	NOT NULL,
-	email			VARCHAR		NOT NULL,
+	password		VARBINARY(100) NOT NULL,
+	email			VARCHAR	(100)	NOT NULL,
 	email-active	BOOLEAN		NULL,
 	timeZone		CHAR(10)	NOT NULL,
-	temp-pass		VARBINARY	NULL,
+	temp-pass		VARBINARY(100)	NULL,
 		CONSTRAINT USER_PK PRIMARY KEY(userID)
 );
 
@@ -21,7 +21,7 @@ CREATE TABLE type(
 	lr-Long			FLOAT		NULL,
 	speed			INT			NOT NULL,
 	objectType		CHAR(100)	NOT NULL,
-	pic				VARCHAR		NOT NULL,
+	pic				VARCHAR(200)		NOT NULL,
 		CONSTRAINT TYPE_PK PRIMARY KEY(typeID),
 		CONSTRAINT USER_TYPE_FK FOREIGN KEY(userID)
 			REFERENCES USER(userID)
@@ -36,7 +36,7 @@ CREATE TABLE tracked(
 	make			CHAR(30)	NULL,
 	model			CHAR(30)	NULL,
 	year			CHAR(10)	NOT NULL,
-	pic				VARCHAR		NOT NULL,
+	pic				VARCHAR(200)		NOT NULL,
 	sex				CHAR(10)	NULL,
 	tagNumber		CHAR(20)	NOT NULL,
 	password		VARBINARY	NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE location(
 	locationID		INT			NOT NULL AUTO_INCREMENT,
 	trackedID		INT			NOT NULL,
 	date			DATETIME	NOT NULL,
-	health			VARCHAR		NULL,
+	health			VARCHAR(1000)		NULL,
 	lat				FLOAT		NULL,
 	long			FLOAT		NULL,
 		CONSTRAINT LOCATION_PK PRIMARY KEY(locationID),
